@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Order Success";
+}
+
+<h1>Your Order Has Been Placed Successfully!</h1>
+
+<p>Thank you for your order. We will process it shortly.</p>
+
+<p>Order Summary:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ItemsInOrder)
+        {
+            <tr>
+                <td>@item.FoodItem.Name</td>
+                <td>@item.FoodItem.Price</td>
+                <td>@item.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p><b>Total: </b>@Model.TotalAmount</p>
+
+<td>
+    <a asp-action="Index" asp-controller="FoodItems">Go back to food items</a>
+</td>
+
+

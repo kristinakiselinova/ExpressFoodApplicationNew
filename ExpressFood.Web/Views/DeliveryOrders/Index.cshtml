@@ -1,0 +1,82 @@
+﻿@model ExpressFood.Domain.DTO.OrderDTO
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+@using ExpressFood.Domain
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="DeliveryOrders" asp-action="PayOrder" method="post">
+    <article>
+        <script src="https://checkout.stripe.com/checkout.js"
+                class="stripe-button"
+                data-key="@Stripe.Value.PublishableKey"
+                data-locale="auto"
+                data-description="ExpressFood Application Payment"
+                data-amount="@(Model.TotalAmount * 100)"
+                data-label="Плати @Model.TotalAmount денари">
+        </script>
+    </article>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Product name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.ItemsInOrder.Count(); i++)
+        {
+            var item = Model.ItemsInOrder[i];
+
+            <tr>
+                <td>@(i + 1)</td>
+                <td>
+                    @item.FoodItem.Name
+                </td>
+
+                <td>
+                    @item.FoodItem.Price
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    |
+                    <a asp-action="DeleteFoodItem" asp-controller="DeliveryOrders" asp-route-id="@item.FoodItemId">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+    <th><b>Total:</b></th>
+
+    <th></th>
+    <th></th>
+    <th></th>
+
+    <th><b>@Model.TotalAmount</b></th>
+
+    </tfoot>
+</table>
