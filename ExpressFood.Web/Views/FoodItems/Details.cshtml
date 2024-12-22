@@ -1,4 +1,4 @@
-﻿@model ExpressFood.Domain.Domain.FoodItem
+﻿@* @model ExpressFood.Domain.Domain.FoodItem
 
 @{
     ViewData["Title"] = "Details";
@@ -45,4 +45,30 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+ *@
+@model ExpressFood.Domain.Domain.FoodItem
+
+@{
+    ViewData["Title"] = "Food Item Details";
+}
+
+<h1 class="text-center mb-4" style="font-weight: 600; color: #333;">Food Item Details</h1>
+
+<div class="container">
+    <div class="card border-0 shadow-sm rounded-3 mx-auto" style="max-width: 600px;">
+        <img src="@Model.FoodItemImage" class="card-img-top rounded-top" alt="Food Item Image" style="height: 300px; object-fit: cover;">
+
+        <div class="card-body text-center bg-light">
+            <h4 class="card-title" style="color: #2c3e50; font-weight: 600;">@Model.Name</h4>
+            <p class="text-muted">@Model.Description</p>
+            <p class="mb-1"><strong>Price:</strong> @Model.Price ден.</p>
+            <p class="mb-1"><strong>Restaurant:</strong> @Model.Restaurant.Name</p>
+        </div>
+
+        <div class="card-footer text-center bg-white">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-dark rounded-pill px-4">Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 ms-2">Back</a>
+        </div>
+    </div>
 </div>

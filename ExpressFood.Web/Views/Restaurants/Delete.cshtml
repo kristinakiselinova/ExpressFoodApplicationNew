@@ -1,4 +1,4 @@
-﻿@model ExpressFood.Domain.Domain.Restaurant
+﻿@* @model ExpressFood.Domain.Domain.Restaurant
 
 @{
     ViewData["Title"] = "Delete";
@@ -55,3 +55,39 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+ *@
+ @model ExpressFood.Domain.Domain.Restaurant
+
+@{
+    ViewData["Title"] = "Delete Restaurant";
+}
+
+<h1 class="text-center mb-4" style="font-weight: 600; color: #dc3545;">Delete Restaurant</h1>
+
+<div class="container">
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body" style="background-color: #f8f9fa;">
+            <h4 class="mb-4 text-center">Are you sure you want to delete this restaurant?</h4>
+
+            <div class="text-muted mb-3">
+                <strong>Name:</strong> @Model.Name <br />
+                <strong>Address:</strong> @Model.Address <br />
+                <strong>Contact:</strong> @Model.ContactNumber <br />
+                <strong>Opening Hours:</strong> @Model.OpeningHours <br />
+                <strong>Rating:</strong> ⭐ @Model.Rating
+                <br />
+                <strong>Restaurant Image:</strong> <br />
+                <img src="@Model.RestaurantImage" style="width: 200px; height: 200px; object-fit: cover;" />
+            </div>
+
+            <div class="text-center">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Delete</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4 py-2 rounded-pill shadow-sm">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

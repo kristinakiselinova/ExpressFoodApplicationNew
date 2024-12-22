@@ -1,4 +1,4 @@
-﻿@model ExpressFood.Domain.Domain.FoodItem
+﻿@* @model ExpressFood.Domain.Domain.FoodItem
 
 @{
     ViewData["Title"] = "Edit";
@@ -47,8 +47,60 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
+</div> *@
+@model ExpressFood.Domain.Domain.FoodItem
+
+@{
+    ViewData["Title"] = "Edit Food Item";
+}
+
+<h1 class="text-center mb-4" style="font-weight: 600; color: #333;">Edit Food Item</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit" class="p-4 shadow-sm rounded-3 bg-light">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Name" class="form-label">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Price" class="form-label">Price</label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="FoodItemImage" class="form-label">Image URL</label>
+                    <input asp-for="FoodItemImage" class="form-control" />
+                    <span asp-validation-for="FoodItemImage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="RestaurantId" class="form-label">Restaurant</label>
+                    <select asp-for="RestaurantId" asp-items="@(ViewData["RestaurantId"] as SelectList)" class="form-select"></select>
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" value="Save" class="btn btn-dark rounded-pill px-4" />
+                    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 ms-2">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+
+

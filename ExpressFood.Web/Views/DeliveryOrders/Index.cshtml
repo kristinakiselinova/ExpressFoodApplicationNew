@@ -1,4 +1,4 @@
-﻿@model ExpressFood.Domain.DTO.OrderDTO
+﻿@* @model ExpressFood.Domain.DTO.OrderDTO
 ﻿@using Microsoft.Extensions.Options
 @inject IOptions<StripeSettings> Stripe
 @using ExpressFood.Domain
@@ -80,3 +80,82 @@
 
     </tfoot>
 </table>
+
+
+
+
+
+
+ *@
+ @model ExpressFood.Domain.DTO.OrderDTO
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+@using ExpressFood.Domain
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4" style="font-weight: 600; color: #333;">Shopping Cart</h1>
+
+
+    <form asp-controller="DeliveryOrders" asp-action="PayOrder" method="post">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Payment</h4>
+            </div>
+            <div class="card-body">
+                <script src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
+                        data-key="@Stripe.Value.PublishableKey"
+                        data-locale="auto"
+                        data-description="ExpressFood Application Payment"
+                        data-amount="@(Model.TotalAmount * 100)"
+                        data-label="Плати @Model.TotalAmount денари">
+                </script>
+            </div>
+        </div>
+    </form>
+
+    <div class="card">
+        <div class="card-header">
+            <h4>Order Details</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.ItemsInOrder.Count(); i++)
+                    {
+                        var item = Model.ItemsInOrder[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.FoodItem.Name</td>
+                            <td>@item.FoodItem.Price</td>
+                            <td>@item.Quantity</td>
+                            <td>
+                                <a asp-action="DeleteFoodItem" asp-controller="DeliveryOrders" asp-route-id="@item.FoodItemId" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th><b>Total:</b></th>
+                        <td colspan="4" class="text-end"><b>@Model.TotalAmount денари</b></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

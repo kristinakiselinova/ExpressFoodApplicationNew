@@ -1,8 +1,66 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+     
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="text-center" style="background-color: #f8f9fa; padding: 50px 0;">
+    <h1 class="display-4" style="font-weight: 600; color: #333;">Welcome to <span style="color: #dc3545;">ExpressFood</span></h1>
+    <p class="lead" style="font-size: 1.25rem; color: #555;">Your go-to platform for the best food delivery experience.</p>
+    <p class="mb-4" style="font-size: 1rem; color: #555;">Explore our delicious menu, order from top-rated restaurants, and get your favorite meals delivered right to your door.</p>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center" style="color: #333; font-weight: 600;">Why Choose ExpressFood?</h2>
+    <div class="row text-center mt-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #dc3545;">Fast Delivery</h5>
+                    <p class="card-text" style="color: #555;">Get your meals delivered quickly and efficiently, right to your doorstep.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #dc3545;">Wide Selection</h5>
+                    <p class="card-text" style="color: #555;">Choose from a variety of top-rated restaurants and dishes to satisfy every craving.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #dc3545;">Safe & Secure</h5>
+                    <p class="card-text" style="color: #555;">Your information is always protected with our secure payment and data handling systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-5">
+    <h2 style="color: #333; font-weight: 600;">Get Started with ExpressFood Today</h2>
+    <p class="lead" style="color: #555;">Sign up to start ordering from your favorite restaurants now.</p>
+</div>
+
+<div class="text-center mt-5">
+    <a href="/Home/Privacy" class="btn btn-outline-danger btn-lg rounded-pill shadow-sm" style="padding: 12px 30px; font-size: 1rem;">Privacy Policy</a>
 </div>

@@ -1,4 +1,4 @@
-﻿@model ExpressFood.Domain.Domain.Restaurant
+﻿@* @model ExpressFood.Domain.Domain.Restaurant
 
 @{
     ViewData["Title"] = "Details";
@@ -52,3 +52,39 @@
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+*@
+
+@model ExpressFood.Domain.Domain.Restaurant
+
+@{
+    ViewData["Title"] = "Restaurant Details";
+}
+
+<h1 class="text-center mb-4" style="font-weight: 600; color: #333;">Restaurant Details</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm rounded-3" style="max-width: 600px; margin: auto;">
+                <img src="@Model.RestaurantImage" class="card-img-top rounded-top"
+                     style="height: 300px; object-fit: cover;" alt="Restaurant Image" />
+
+                <div class="card-body text-center" style="background-color: #f8f9fa;">
+                    <h4 class="card-title mb-3" style="color: #2c3e50; font-weight: 600;">@Model.Name</h4>
+                    <p class="card-text text-muted">
+                        <strong>Address:</strong> @Model.Address <br />
+                        <strong>Contact:</strong> @Model.ContactNumber <br />
+                        <strong>Opening Hours:</strong> @Model.OpeningHours <br />
+                        <strong>Rating:</strong> ⭐ @Model.Rating
+                    </p>
+                </div>
+
+                <div class="card-footer text-center bg-white border-0">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-dark rounded-pill px-4">Edit</a>
+                    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

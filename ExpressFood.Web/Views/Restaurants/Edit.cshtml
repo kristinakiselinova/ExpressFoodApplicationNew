@@ -1,4 +1,4 @@
-﻿@model ExpressFood.Domain.Domain.Restaurant
+﻿@* @model ExpressFood.Domain.Domain.Restaurant
 
 @{
     ViewData["Title"] = "Edit";
@@ -58,3 +58,67 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+ *@
+ @model ExpressFood.Domain.Domain.Restaurant
+
+@{
+    ViewData["Title"] = "Edit Restaurant";
+}
+
+<h1 class="text-center mb-4" style="font-weight: 600; color: #333;">Edit Restaurant</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body" style="background-color: #f8f9fa;">
+                    <form asp-action="Edit">
+                        <input type="hidden" asp-for="Id" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold">Name</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label fw-semibold">Address</label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ContactNumber" class="form-label fw-semibold">Contact Number</label>
+                            <input asp-for="ContactNumber" class="form-control" />
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="OpeningHours" class="form-label fw-semibold">Opening Hours</label>
+                            <input asp-for="OpeningHours" class="form-control" />
+                            <span asp-validation-for="OpeningHours" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="RestaurantImage" class="form-label fw-semibold">Image URL</label>
+                            <input asp-for="RestaurantImage" class="form-control" />
+                            <span asp-validation-for="RestaurantImage" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Rating" class="form-label fw-semibold">Rating</label>
+                            <input asp-for="Rating" class="form-control" />
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-dark px-4 py-2 rounded-pill shadow-sm">Save</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4 py-2 rounded-pill shadow-sm">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

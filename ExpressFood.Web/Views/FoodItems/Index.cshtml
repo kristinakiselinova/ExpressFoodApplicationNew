@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExpressFood.Domain.Domain.FoodItem>
+﻿@* @model IEnumerable<ExpressFood.Domain.Domain.FoodItem>
 
 @{
     ViewData["Title"] = "Index";
@@ -59,3 +59,44 @@
 }
     </tbody>
 </table>
+ *@
+@model IEnumerable<ExpressFood.Domain.Domain.FoodItem>
+
+@{
+    ViewData["Title"] = "Food Items";
+}
+
+<h1 class="text-center mb-4" style="font-weight: 600; color: #333;">Food Items</h1>
+
+<p class="text-center mb-4">
+    <a asp-action="Create" class="btn btn-dark px-4 py-2 rounded-pill shadow-sm">Add New Food Item</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3">
+                    <img src="@item.FoodItemImage" class="card-img-top rounded-top" alt="Food Item Image"
+                         style="height: 200px; object-fit: cover;">
+
+                    <div class="card-body d-flex flex-column" style="background-color: #f8f9fa;">
+                        <h5 class="card-title mb-2" style="color: #2c3e50; font-weight: 600;">@item.Name</h5>
+                        <p class="card-text text-muted" style="font-size: 0.9rem;">
+                            @item.Description
+                        </p>
+                        <p class="mb-2" style="font-weight: 600;">Price: @item.Price ден.</p>
+                        <p class="text-muted mb-2">Restaurant: @item.Restaurant.Name</p>
+                        <div class="mt-auto text-center">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-dark btn-sm rounded-pill px-3">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm rounded-pill px-3">Delete</a>
+                            <a asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm rounded-pill px-3">Add to Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
