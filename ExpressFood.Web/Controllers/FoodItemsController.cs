@@ -198,6 +198,7 @@ namespace ExpressFood.Web.Controllers
             return View(foodItem);
         }
         //GET
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             var restaurants = _restaurantService.GetAllRestaurants();
@@ -210,6 +211,7 @@ namespace ExpressFood.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult Create([Bind("Id, Name, Description, Price, FoodItemImage,RestaurantId, Restaurant")] FoodItem item)
         {
 
@@ -231,6 +233,7 @@ namespace ExpressFood.Web.Controllers
 
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -250,6 +253,7 @@ namespace ExpressFood.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(Guid id, [Bind("Id, Name, Description, Price, FoodItemImage,RestaurantId, Restaurant")] FoodItem item)
         {
             if (id != item.Id)
@@ -269,6 +273,7 @@ namespace ExpressFood.Web.Controllers
             return View(item);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -286,6 +291,7 @@ namespace ExpressFood.Web.Controllers
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteConfirmed(Guid id)
         {
             _foodItemService.DeleteFoodItem(id);

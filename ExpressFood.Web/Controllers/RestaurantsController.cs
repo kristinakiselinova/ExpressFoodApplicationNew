@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ExpressFood.Domain.Domain;
 using ExpressFood.Repository;
 using ExpressFood.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExpressFood.Web.Controllers
 {
@@ -186,8 +187,9 @@ namespace ExpressFood.Web.Controllers
             }
             return View(restaurant);
         }
-        
+
         //GET
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             var restaurants = _restaurantService.GetAllRestaurants();
@@ -201,6 +203,7 @@ namespace ExpressFood.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult Create([Bind("Name, Address, ContactNumber, OpeningHours, RestaurantImage, Rating")] Restaurant restaurant)
         {
 
@@ -215,6 +218,7 @@ namespace ExpressFood.Web.Controllers
 
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -232,6 +236,7 @@ namespace ExpressFood.Web.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(Guid id, [Bind("Id,Name, Address, ContactNumber, OpeningHours, RestaurantImage, Rating")] Restaurant restaurant)
         {
             if (id != restaurant.Id)
@@ -249,6 +254,7 @@ namespace ExpressFood.Web.Controllers
             return View(restaurant);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -266,6 +272,7 @@ namespace ExpressFood.Web.Controllers
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteConfirmed(Guid id)
         {
             _restaurantService.DeleteRestaurant(id);

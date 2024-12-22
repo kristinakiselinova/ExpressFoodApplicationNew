@@ -84,9 +84,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="FoodItems" asp-action="Index">Our Food Items</a>
                         </li>
                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DeliveryOrders" asp-action="Index">Shopping Cart</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("customer"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="DeliveryOrders" asp-action="Index">Shopping Cart</a>
+                            </li>
+                        }
+                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

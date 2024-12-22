@@ -73,7 +73,10 @@
 <h1 class="text-center mb-4" style="font-weight: 600; color: #333;">Restaurants</h1>
 
 <p class="text-center mb-4">
-    <a asp-action="Create" class="btn btn-dark px-4 py-2 rounded-pill shadow-sm">Add New Restaurant</a>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Create" class="btn btn-dark px-4 py-2 rounded-pill shadow-sm">Add New Restaurant</a>
+    }
 </p>
 
 <div class="container">
@@ -98,9 +101,14 @@
                     </div>
 
                     <div class="card-footer bg-white border-0 text-center">
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-dark btn-sm rounded-pill px-3">Edit</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-dark btn-sm rounded-pill px-3">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm rounded-pill px-3">Delete</a>
+                        }
+                     
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm rounded-pill px-3">Delete</a>
+                        
                     </div>
                 </div>
             </div>

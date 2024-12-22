@@ -11,10 +11,12 @@ using ExpressFood.Service.Interface;
 using ExpressFood.Domain.Identity;
 using System.Security.Claims;
 using Stripe;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace ExpressFood.Web.Controllers
 {
+    [Authorize]
     public class DeliveryOrdersController : Controller
     {
         /* private readonly ApplicationDbContext _context;
