@@ -13,7 +13,6 @@ namespace ExpressFood.Repository.Implementation
     {
         private readonly ApplicationDbContext context;
         private DbSet<T> entities;
-        //string errorMessage = string.Empty;
 
         public Repository(ApplicationDbContext context)
         {

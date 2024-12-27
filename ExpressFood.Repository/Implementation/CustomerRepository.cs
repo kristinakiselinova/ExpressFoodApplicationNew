@@ -29,9 +29,9 @@ namespace ExpressFood.Repository.Implementation
         {
             var strGuid = id.ToString();
             var result = entities
-                .Include(z => z.Orders)  // Eagerly load Orders collection from Customer
-                .ThenInclude(order => order.FoodItemsInOrder)  // Eagerly load FoodItemsInOrder for each DeliveryOrder
-                .FirstOrDefault(z => z.Id.ToString() == strGuid);  // Find the customer by Id (strGuid)
+                .Include(z => z.Orders)  
+                .ThenInclude(order => order.FoodItemsInOrder)  
+                .FirstOrDefault(z => z.Id.ToString() == strGuid);  
 
             return result;
         }
