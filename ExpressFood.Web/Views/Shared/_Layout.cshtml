@@ -29,7 +29,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="FoodItems" asp-action="Index">Our Food Items</a>
                         </li>
-                       
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="PartnersRestaurant" asp-action="Index">Partner's Restaurants</a>
+                        </li>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("customer"))
                         {
                             <li class="nav-item">

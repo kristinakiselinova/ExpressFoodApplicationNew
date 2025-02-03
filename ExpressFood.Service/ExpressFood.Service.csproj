@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ExpressFood.Domain\ExpressFood.Domain.csproj" />
     <ProjectReference Include="..\ExpressFood.Repository\ExpressFood.Repository.csproj" />
   </ItemGroup>
